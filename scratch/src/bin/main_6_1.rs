@@ -25,7 +25,20 @@ pub mod app {
 }
 
 fn main() {
-    let fruit = app::Banana(120);
-    let calories = fruit.calories();
-    println!("{}", calories);
+    let banana = app::Banana(120);
+    pass_concrete(&banana);
+    pass_dyn(&banana);
+    pass_generic(&banana);
+}
+
+fn pass_concrete(banana: &app::Banana) {
+    println!("{:?}", banana.calories());
+}
+
+fn pass_dyn(fruit: &dyn app::Fruit) {
+    println!("{:?}", fruit.calories());
+}
+
+fn pass_generic<T: app::Fruit>(fruit: &T) {
+    println!("{:?}", fruit.calories());
 }
